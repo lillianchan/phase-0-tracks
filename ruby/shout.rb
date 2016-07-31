@@ -34,6 +34,14 @@
 
 #Release 2
 
+
+
+module Shout
+  def self.yell_happily(words)
+    puts "We are SF! We are GIANT! Let's go GIANTS! #{words}" 
+  end
+end
+
 class Cheerleader
   include Shout
 end
@@ -42,14 +50,11 @@ class Fan
   include Shout
 end
 
-module Shout
-  def self.yell_happily(words)
-    words "We are SF! We are GIANT! Let's go GIANTS! #{words}" 
-  end
-end
+Fan = Fan.new
+Fan.yell_happily("We love you")
 
-fan = Fan.new
-fan.Shout("We love you")
+Cheerleader = Cheerleader.new
+Cheerleader.yell_happily("Go Team")
 
-cheerleader = Cheerleader.new
-cheerleader.shout("Go Team")
+puts yell_happily
+
