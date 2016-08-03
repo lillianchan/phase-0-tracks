@@ -18,8 +18,11 @@
 
 # 1). One user can enter a word (or phrase, if you would like your game to support that),
 # and another user attempts to guess the word.
+User1, User2
 
-# 2). Guesses are limited, and the number of guesses available is related to the length of the word.
+# 2). Guesses are limited, and the number of guesses available is related to the 
+#length of the word.
+Limit guess to length of the word.length
 
 # 3). The guessing player receives continual feedback on the current state of the word. 
 # So if the secret word is "unicorn", the user will start out seeing something like "_ _ _ _ _ _ _",
@@ -27,59 +30,55 @@
 
 # 4). The user should get a congratulatory message if they win, and a taunting message if they lose.
 
+# create your game in a Class form
+
 class PlanetGame
-	attr_reader: guess_count
-	attr_reader: is_over
-
-	def initialize 
-		@planets ["planet", "empty", "empty", "empty", "empty", "empty", "empty", "empty" ]
-		@guess_count = 0
-		@is_over = false
-	end
-
-	def shuffle
-		@planets.shuffle!
-	end
-
-	def check_words(index)
-		@guess_count += 1
-		if @planets[index] == "planet"
-			@is_over = true
-		else
-			false
-		end
-	end
-end 
-
-user interface
-
-puts "Welcome to the Planet word game!"
-game = PlanetGame.new
-
-puts "Shuffling planets..."
-game.shuffle 
-
-while !game.is_over
-	puts "Which Planet did we choose? 
-	Enter a guess of Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, or Neptune"
-	guess = gets.chomp.to_i
-	if !game.check_cup(guess -1)
-		puts "Nope! Try again."
-	end
+#include readable and writable items that you want to call outside of the class in your driver code
+  attr_reader :guess_count
+  attr_reader :is_over
+	
+#initialize items you would like to use throughout the methods in your class 
+  def initialize
+    @planet_array = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
+    @guess_count = @planet_array.length
+    @is_over = false
+  end
+  
+  #shuffle the planet_array
+  def shuffle
+  	@planet_array.shuffle!
+  end
+  
+  #check the planet word if it matches 
+  def check_word(index)
+  	@guess_count += 1
+  	if @planet_array[index] == "1"
+  		@is_over = true
+  	else
+  		false
+  	end
+  end
 end
 
-	p "You've won in #{{game.guess_count} guesses!"
-	p "You've lost, dare you to try again :)"
+ def guess_count
+ 	@planet_array.length
+end
 
+# user interface
 
+puts "Welcome to the Game !"
+game = PlanetGame.new
 
+puts "Shuffling astro words..."
+game.shuffle
 
+while !game.is_over
+  puts "Guess the astro word! Enter a guess of 8 letters."
+  guess = gets.chomp
+  if !game.check_word(guess - 1)
+  	puts "Nope! Try again."
+  end
+end
 
-
-
-
-
-
-
-
-
+puts "You won in #{game.guess_count} guesses!"
+puts "You lost, but dare you to play again ;)"
